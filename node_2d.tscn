@@ -1,0 +1,176 @@
+[gd_scene load_steps=10 format=3 uid="uid://vyii3nmgabjd"]
+
+[ext_resource type="Texture2D" uid="uid://dgbpqrao3w8cc" path="res://icon.svg" id="1_4mpyf"]
+[ext_resource type="PackedScene" uid="uid://ykmscbm540wj" path="res://character_body_2d.tscn" id="1_o0wko"]
+[ext_resource type="Script" path="res://node_2d.gd" id="1_wq62e"]
+[ext_resource type="PackedScene" uid="uid://c1caqt7wyj4i2" path="res://enemy.tscn" id="2_lkv0a"]
+[ext_resource type="Script" path="res://spawner.gd" id="2_spjvl"]
+[ext_resource type="Texture2D" uid="uid://dypn45a6tmrue" path="res://ground/summer tilemap.png" id="4_suus3"]
+[ext_resource type="PackedScene" uid="uid://dsmcowpbfwwp" path="res://spawn.tscn" id="8_stad0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vdo53"]
+texture = ExtResource("4_suus3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+4:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ev6jm"]
+sources/0 = SubResource("TileSetAtlasSource_vdo53")
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_wq62e")
+
+[node name="spawner" type="Node" parent="."]
+script = ExtResource("2_spjvl")
+
+[node name="Timer2" type="Timer" parent="spawner"]
+wait_time = 3.0
+autostart = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(72, -101)
+scale = Vector2(2.92188, 1)
+texture = ExtResource("1_4mpyf")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_o0wko")]
+position = Vector2(12, -5)
+
+[node name="enemy" parent="." groups=["enemy"] instance=ExtResource("2_lkv0a")]
+position = Vector2(59, 14)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ev6jm")
+format = 2
+
+[node name="enemy3" parent="." groups=["enemy"] instance=ExtResource("2_lkv0a")]
+position = Vector2(-45, -5)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="spawn" parent="." instance=ExtResource("8_stad0")]
+position = Vector2(97, -10)
+
+[connection signal="player_slash" from="." to="." method="_on_player_slash"]
+[connection signal="player_slash" from="." to="CharacterBody2D" method="_on_node_2d_player_slash"]
+[connection signal="player_slash" from="." to="enemy" method="_on_node_2d_player_slash"]
+[connection signal="timeout" from="spawner/Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="spawner/Timer2" to="spawner" method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
